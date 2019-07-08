@@ -5,12 +5,25 @@
 $host="mysql";
 $username="root";
 $password="rootpassword";
+$db="todo";
 
-$conn =  new mysqli($host, $username, $password);
+$conn =  new mysqli($host, $username, $password,$db);
+
 if($conn->connect_error){
     die('Connection failed: '.$conn->connect_error);
 }
 
-echo "Connection to MYSQL Established Successful"
+
+echo "Connection to MYSQL Established Successful \n";
+
+$sql="SELECT * FROM my_todo";
+$result=mysqli_query($conn,$sql);
+
+
+while ($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
+
+    echo "<p>". $row[0]." ".$row[1]."</p>";  
+}
+
 
 ?>
